@@ -3,8 +3,8 @@
     {
       "id": 1,
       "name": "Bahen",
-      "brief_description": "You are on the first floor of the Bahen Center. There are elevators to the West, and an exit from the building to St. George street to the East. You see something shiny on the ground -- looks like a toonie?",
-      "long_description": "You are on the first floor of the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet. Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West, and an exit from the building to St. George street to the East.",
+      "brief_description": "You are in the Bahen Center. There is an exit to Robarts Library to the East, and a way to your dorm to the West. You check your laptop battery again without thinking.",
+      "long_description": "You are in the Bahen Center. The building feels bright and dry, and the usual background noise of typing and footsteps blends together. A few students are working quietly, and someone walks past you without looking up. There is an exit to Robarts Library to the East, and a way to your dorm to the West. You tap your trackpad and glance at the corner of your screen—your battery is still low, and you don’t have the charger with you. You try not to panic and remind yourself you still have time before 1pm.",
       "available_commands": {
         "go south": 4,
         "go east": 2,
@@ -15,8 +15,8 @@
     {
       "id": 2,
       "name": "Robarts Library",
-      "brief_description": ""
-      "long_description": "",
+      "brief_description": "You are at Robarts Library. Bahen is to the West, and Old Vic is to the South. You remember you left your laptop charger in one of the study rooms.",
+      "long_description": "You are at Robarts Library. The entrance area is quiet, and the atmosphere immediately makes you feel like you should be studying—even though you don’t have time. A few students walk by with headphones on, and someone is whispering into their phone like it’s a secret. Bahen is to the West, and Old Vic is to the South. As you glance toward the study rooms, you remember unplugging your laptop charger here earlier. Your battery is already low, and you don’t have much time to waste.",
       "available_commands": {
         "go south": 3,
         "go west": 1
@@ -26,8 +26,8 @@
     {
       "id": 3,
       "name": "Old Vic",
-      "brief_description": ""
-      "long_description": "",
+      "brief_description": "You are in Old Vic. Robarts Library is to the North, and Myhal is to the West. There are posters and flyers on the walls.",
+      "long_description": "You are in Old Vic. The space is quiet, and the building feels more relaxed than the areas near the main roads. A few students are walking between classes, and you hear a door close somewhere down the hallway. Robarts Library is to the North, and Myhal is to the West. You take a breath and decide where to go next.",
       "available_commands": {
         "go north": 2,
         "go west": 4
@@ -36,8 +36,8 @@
     {
       "id": 4,
       "name": "Myhal",
-      "brief_description": ""
-      "long_description": "",
+      "brief_description": "You are at Myhal. Bahen is to the North, Old Vic is to the East, and the Exam Centre is to the West. Your friend is here, and they seem to be holding something small in their hand.",
+      "long_description": "You are at Myhal. The space feels modern and open, with bright lighting and lots of glass. A few students are sitting with laptops open, and someone is speaking quietly in a corner like they’re in a meeting. Bahen is to the North, Old Vic is to the East, and the Exam Centre is to the West. Then you spot your friend. They look unusually relaxed considering the deadline, and they’re casually turning something small over in their hand. From the size and shape, it could be exactly what you’ve been missing all morning.",
       "available_commands": {
         "go north": 1,
         "go west": 3,
@@ -48,8 +48,8 @@
     {
       "id": 5,
       "name": "Exam Centre",
-      "brief_description": ""
-      "long_description": "",
+      "brief_description": "You are at the Exam Centre. Myhal is to the East, and your dorm is to the North. Just being here makes you feel nervous for no reason.",
+      "long_description": "You are at the Exam Centre. The area feels quiet and a little too clean, and the lighting makes everything look more serious than it needs to be. Even when you’re not writing an exam, you still get that familiar nervous feeling just standing here. Myhal is to the East, and your dorm is to the North. You take a breath and keep moving—this isn’t the place to get stuck.",
       "available_commands": {
         "go north": 6,
         "go east": 4
@@ -58,8 +58,8 @@
     {
       "id": 6,
       "name": "Dorm",
-      "brief_description": ""
-      "long_description": "",
+      "brief_description": "You are in your dorm. The Exam Centre is to the South, and Bahen is to the East. Your desk is nearby, and the sink is in the corner.",
+      "long_description": "You are in your dorm room. Your desk and chair are set up for work, and the room is quiet. The Exam Centre is to the South, and Bahen is to the East. You glance at the sink, because if your lucky mug is anywhere, it’s usually there.",
       "available_commands": {
         "go south": 5,
         "go east": 1
@@ -70,31 +70,32 @@
   "items": [
     {
       "name": "laptop",
-      "description": "There is a toonie on the ground. Someone must have dropped it.",
+      "description": "Your laptop. The screen is black and it won’t turn on. You press the power button again anyway, even though you know it’s pointless.",
       "start_position": 1,
       "target_position": 6,
       "target_points": 5
     },
     {
       "name": "USB drive",
-      "description": "There is a toonie on the ground. Someone must have dropped it.",
+      "description": "Your USB drive. It has the only copy of your project on it, because you forgot to back it up. The label says “CSC111” in your handwriting.",
       "start_position": 4,
       "target_position": 6,
       "target_points": 5
     },
     {
       "name": "lucky mug",
-      "description": "There is a toonie on the ground. Someone must have dropped it.",
+      "description": "Your lucky U of T mug. It’s been with you through every late-night study session and deadline. You can’t imagine submitting without it.",
       "start_position": 6,
       "target_position": 6,
       "target_points": 5
     },
     {
       "name": "laptop charger",
-      "description": "There is a toonie on the ground. Someone must have dropped it.",
+      "description": "Your laptop charger. The cable is slightly bent near the end from being wrapped too tightly. With your battery this low, you really need it.",
       "start_position": 2,
       "target_position": 6,
       "target_points": 5
     }
   ]
 }
+
