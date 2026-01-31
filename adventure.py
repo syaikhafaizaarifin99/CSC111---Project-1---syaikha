@@ -112,6 +112,21 @@ class AdventureGame:
         else:
             return self._locations[loc_id]
 
+    def get_player_inventory(self) -> list[str]:
+        """" Return list of item that player already had in their inventory.
+        """
+        return list(self._locations[self.current_location_id].items)
+
+    def get_player_score(self) -> int:
+        """" Return current point that the player already got.
+        """
+        score = 0
+        for item in self._items:
+            if (item.target_position == self.current_location_id and item.name in
+                    self._locations[item.target_position].items):
+                score += item.target_points
+        return score
+
 
 if __name__ == "__main__":
     # When you are ready to check your work with python_ta, uncomment the following lines.
@@ -139,10 +154,8 @@ if __name__ == "__main__":
         #  Note that the <choice> variable should be the command which led to this event
         # Add an Event for entering this location (only if it is the first event OR location changed)
         if game_log.is_empty() or (game_log.last is not None and game_log.last.id_num != location.id_num):
-            new_event = location
+            new_event = Event(location.id_num, location.long_description)
             game_log.add_event(new_event)
-
-
 
         # TODO: Depending on whether or not it's been visited before,
         #  print either full description (first time visit) or brief description (every subsequent visit) of location
@@ -173,11 +186,20 @@ if __name__ == "__main__":
                 game_log.display_events()
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
             elif choice == "look":
-                ...
+                print(location.long_description)
+
             elif choice == "inventory":
-                ...
+                inventory = game.get_player_inventory()
+                if len(inventory) == 0:
+                    print("You are carrying nothing.")
+                else:
+                    print("You are carrying:")
+                    for name in inventory:
+                        print("-", name)
+
             elif choice == "score":
-                ...
+                print(f"Score: {game.get_player_score()}")
+
             elif choice == "quit":
                 game.ongoing = False
         else:
