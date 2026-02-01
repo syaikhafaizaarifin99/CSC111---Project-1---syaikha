@@ -54,7 +54,9 @@ class EventList:
         - last: The last event in this list, or None if the list is empty.
 
     Representation Invariants:
-        - # TODO add any appropriate representation invariants, if needed
+        - If self.first is not None, then self.first.prev is None
+        - If self.last is not None, then self.last.next is None and self.last.next_command is None.
+        - (self.first is None) == (self.last is None)
     """
     first: Optional[Event]
     last: Optional[Event]
