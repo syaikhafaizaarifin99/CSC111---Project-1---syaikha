@@ -19,6 +19,7 @@ please consult our Course Syllabus.
 This file is Copyright (c) 2026 CSC111 Teaching Team
 """
 from dataclasses import dataclass
+from typing import Optional, Tuple
 
 
 @dataclass
@@ -57,6 +58,7 @@ class Item:
 
     Instance Attributes:
         - name: the name of the item
+        - description: description of the item
         - start_position: the item's initial position
         - target_position: where the item can be used
         - target_points: the point of the item
@@ -74,11 +76,17 @@ class Item:
     # All item objects in your game MUST be represented as an instance of this class.
 
     name: str
+    description: str
     start_position: int
     target_position: int
     target_points: int
 
-
+@dataclass
+class Player:
+    name: str
+    energy: int
+    points: int = 0
+    last_move: Optional[object] = None
 # Note: Other entities you may want to add, depending on your game plan:
 # - Puzzle class to represent special locations (could inherit from Location class if it seems suitable)
 # - Player class

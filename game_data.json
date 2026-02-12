@@ -4,13 +4,15 @@
       "id": 1,
       "name": "Bahen",
       "brief_description": "You are in the Bahen Center. There is an exit to Robarts Library to the East, and a way to your dorm to the West. You check your laptop battery again without thinking.",
-      "long_description": "You are in the Bahen Center. The building feels bright and dry, and the usual background noise of typing and footsteps blends together. A few students are working quietly, and someone walks past you without looking up. There is an exit to Robarts Library to the East, and a way to your dorm to the West. You tap your trackpad and glance at the corner of your screen—your battery is still low, and you don’t have the charger with you. You try not to panic and remind yourself you still have time before 1pm.",
+      "long_description": "You are in the Bahen Center. The building feels bright and dry, and the usual background noise of typing and footsteps blends together. A few students are working quietly, and someone walks past you without looking up. Near a table by the wall, you spot a friend slumped over a laptop, whispering panic-math under their breath.\n\nThey look up and blurt out: “Please—help. The CSSU built this AI model for a game and it keeps destroying me. I can’t focus until I beat it.” The laptop on the table is the one you’ve been searching for—but your friend blocks it with a protective arm like it’s a sacred artifact.\n\n“Win just once,” they insist. “Then you can take it. Deal?”\n\n Exits: East to Robarts, West to your dorm, South to the hallway. You try not to panic and remind yourself you still have time before 1pm.",
       "available_commands": {
         "go south": 4,
         "go east": 2,
         "go west": 6
       },
-      "items": ["laptop"]
+      "items": [
+        "laptop"
+      ]
     },
     {
       "id": 2,
@@ -21,7 +23,9 @@
         "go south": 3,
         "go west": 1
       },
-      "items": ["laptop charger"]
+      "items": [
+        "laptop charger"
+      ]
     },
     {
       "id": 3,
@@ -44,7 +48,9 @@
         "go west": 5,
         "go east": 3
       },
-      "items": ["USB drive"]
+      "items": [
+        "USB drive"
+      ]
     },
     {
       "id": 5,
@@ -55,7 +61,9 @@
         "go north": 6,
         "go east": 4
       },
-      "items": []
+      "items": [
+        "lucky mug"
+      ]
     },
     {
       "id": 6,
@@ -66,7 +74,7 @@
         "go south": 5,
         "go east": 1
       },
-      "items": ["lucky mug"]
+      "items": []
     }
   ],
   "items": [
@@ -87,7 +95,7 @@
     {
       "name": "lucky mug",
       "description": "Your lucky U of T mug. It’s been with you through every late-night study session and deadline. You can’t imagine submitting without it.",
-      "start_position": 6,
+      "start_position": 5,
       "target_position": 6,
       "target_points": 5
     },
@@ -100,4 +108,3 @@
     }
   ]
 }
-

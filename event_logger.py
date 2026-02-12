@@ -54,28 +54,39 @@ class EventList:
         - last: The last event in this list, or None if the list is empty.
 
     Representation Invariants:
-        - If self.first is not None, then self.first.prev is None
-        - If self.last is not None, then self.last.next is None and self.last.next_command is None.
         - (self.first is None) == (self.last is None)
+        - If self.first is not None, then self.first.prev is None
+        - If self.last is not None, then self.last.next is None
     """
     first: Optional[Event]
     last: Optional[Event]
 
-    # Note: You may ADD parameters/attributes/methods to this class as you see fit.
-    # But do not rename or remove any existing methods/attributes in this class
-
     def __init__(self) -> None:
         """Initialize a new empty event list."""
-
         self.first = None
         self.last = None
 
     def display_events(self) -> None:
         """Display all events in chronological order."""
         curr = self.first
-        while curr:
-            print(f"Location: {curr.id_num}, Command: {curr.next_command}")
+        while curr is not None:
+            # Show the command that led FROM this event to the next.
+            # If curr is the last event, next_command will be None.
+            cmd = curr.next_command if curr.next_command is not None else "(end)"
+            print(f"Location: {curr.id_num}, Command: {cmd}")
             curr = curr.next
+
+    def get_events_as_string(self) -> str:
+        """Return a string showing all events in chronological order.
+        This is useful for Project 1 (so the game manager can print it).
+        """
+        lines = []
+        curr = self.first
+        while curr is not None:
+            cmd = curr.next_command if curr.next_command is not None else "(end)"
+            lines.append(f"Location: {curr.id_num}, Command: {cmd}")
+            curr = curr.next
+        return "\n".join(lines) if lines else "(no events)"
 
     def is_empty(self) -> bool:
         """Return whether this event list is empty."""
@@ -86,9 +97,11 @@ class EventList:
         Add the given new event to the end of this event list.
         The given command is the command which was used to reach this new event, or None if this is the first
         event in the game.
-        """
-        # Hint: You should update the previous node's <next_command> as needed
 
+        IMPORTANT LINKED-LIST IDEA:
+        - The <command> is stored on the *previous* node as its next_command,
+          because next_command means "how to get from this node to the next node".
+        """
         event.next = None
         event.next_command = None
 
@@ -97,6 +110,8 @@ class EventList:
             self.first = event
             self.last = event
         else:
+            # Update the old last node to point to this new event
+            assert self.last is not None
             self.last.next_command = command
             event.prev = self.last
             self.last.next = event
@@ -107,23 +122,24 @@ class EventList:
         Remove the last event from this event list.
         If the list is empty, do nothing.
         """
-        # Hint: The <next_command> and <next> attributes for the new last event should be updated as needed
-
         if self.is_empty():
             return
+
+        assert self.last is not None
         if self.first is self.last:
             self.first = None
             self.last = None
         else:
             new_last = self.last.prev
+            assert new_last is not None
             new_last.next = None
             new_last.next_command = None
+
             self.last.prev = None
             self.last = new_last
 
     def get_id_log(self) -> list[int]:
         """Return a list of all location IDs visited for each event in this list, in sequence."""
-
         id_lst = []
         curr = self.first
         while curr is not None:
@@ -131,12 +147,50 @@ class EventList:
             curr = curr.next
         return id_lst
 
+    def to_list(self) -> list[tuple[int, str, str]]:
+        """Return events as a list of (location_id, description, command_to_next).
+
+        Note: For the last event, command_to_next will be '' (empty string) because there is no next event.
+        """
+        out = []
+        curr = self.first
+        while curr is not None:
+            cmd = curr.next_command if curr.next_command is not None else ""
+            out.append((curr.id_num, curr.description, cmd))
+            curr = curr.next
+        return out
+
+    def load_from_list(self, data: list[tuple[int, str, str]]) -> None:
+        """Replace current events with the events in data.
+
+        data is a list of (loc_id, description, command_to_next).
+        We rebuild the Event nodes and restore next_command values.
+        """
+        self.first = None
+        self.last = None
+
+        if not data:
+            return
+
+        # Create all event nodes first
+        nodes: list[Event] = [Event(loc_id, desc) for (loc_id, desc, _cmd) in data]
+
+        # Link them + restore next_command on each node (except last)
+        for i in range(len(nodes) - 1):
+            nodes[i].next = nodes[i + 1]
+            nodes[i + 1].prev = nodes[i]
+            nodes[i].next_command = data[i][2] if data[i][2] != "" else None
+
+        # Last node fields
+        nodes[-1].next = None
+        nodes[-1].next_command = None
+        nodes[0].prev = None
+
+        self.first = nodes[0]
+        self.last = nodes[-1]
+
 
 if __name__ == '__main__':
-    # pass
-    # When you are ready to check your work with python_ta, uncomment the following lines.
-    # (Delete the "#" and space before each line.)
-    # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
     import python_ta
     python_ta.check_all(config={
         'max-line-length': 120,
